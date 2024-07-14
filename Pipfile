@@ -13,6 +13,9 @@ scipy = "*"
 pywavelets = "*"
 pyemd = "*"
 emd-signal = "*"
+xgboost = "*"
+ipykernel = "*"
+statsmodels = "*"
 
 [dev-packages]
 
