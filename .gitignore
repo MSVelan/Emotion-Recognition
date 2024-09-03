@@ -3,3 +3,6 @@ Extracted_Features/*
 old_extracted_features
 Testing
 development.ipynb
+Models/*
+Datasets/*
+.ipynb_checkpoints/*
