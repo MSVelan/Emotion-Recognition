@@ -1,0 +1,39 @@
+digraph G {
+    rankdir=LR;
+    node [shape=box, style=filled, color=black, fontcolor=white];
+
+    // Database
+    database [label="EEG DREAMER database\n23 Subjects, 14 Channels and 9 Emotions"];
+
+    // Stage-1 Blocks
+    dwt [label="DWT"];
+    emd [label="EMD\nIMFs"];
+    feature_extraction [label="Feature Extraction and Selection"];
+    
+    // Sub-blocks for Stage-1
+    dwt_sub [label="EEG Band Separation\n(α, β, γ, θ)"];
+    feature_extraction_sub [label="ANOVA\n31 Statistical Features"];
+
+    // Stage-2 Blocks
+    ml_system [label="Multi-class ML based system"];
+    deep_learning [label="Deep Learning models"];
+
+    // Emotions
+    amusement [label="Amusement"];
+    anger [label="Anger"];
+    disgust [label="Disgust"];
+    excitement [label="Excitement"];
+    fear [label="Fear"];
+    happy [label="Happy"];
+    relax [label="Relax"];
+    sad [label="Sad"];
+    surprise [label="Surprise"];
+
+    // Connections
+    database -> deep_learning;
+    deep_learning -> {amusement, anger, disgust, excitement, fear, happy, relax, sad, surprise};
+    ml_system -> {amusement, anger, disgust, excitement, fear, happy, relax, sad, surprise};
+    ml_system -> {dwt, emd, feature_extraction};
+    feature_extraction -> feature_extraction_sub;
+    dwt -> dwt_sub;
+}

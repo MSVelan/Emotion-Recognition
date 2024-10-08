@@ -1,0 +1,30 @@
+digraph G {
+    rankdir=TB;
+    node [shape=box, style=filled, color=lightgrey];
+
+    // First layer
+    EEG_Dreamer_Database [label="EEG Dreamer Database"];
+
+    // Second layer
+    DWT [label="DWT"];
+    EMD [label="EMD (IMFs)"];
+    Feature_Extraction [label="Feature Extraction and Selection (Anova)"];
+
+    // Third layer
+    Multi_Class_ML [label="Multi-class ML Based System"];
+    Deep_Learning_Models [label="Deep Learning Models"];
+
+    // Fourth layer
+    Emotions [label="9 Emotions"];
+
+    // Define layers
+    { rank=same; EEG_Dreamer_Database; }
+    { rank=same; DWT; EMD; Feature_Extraction; }
+    { rank=same; Multi_Class_ML; Deep_Learning_Models; }
+    { rank=same; Emotions; }
+
+    // Connect nodes between layers
+    EEG_Dreamer_Database -> { DWT; EMD; Feature_Extraction; Deep_Learning_Models };
+    { DWT; EMD; Feature_Extraction } -> Multi_Class_ML;
+    { Multi_Class_ML; Deep_Learning_Models } -> Emotions;
+}

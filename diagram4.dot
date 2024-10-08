@@ -1,0 +1,39 @@
+digraph G {
+    rankdir=TB;
+    node [shape=box, style=filled, color=lightgrey];
+
+    // First layer
+    EEG_Dreamer_Database [label="EEG Dreamer Database"];
+
+    // Second layer
+    DWT [label="DWT"];
+    EMD [label="EMD"];
+    Feature_Extraction [label="Feature Extraction"];
+
+    // Third layer
+    Multi_Class_ML [label="Multi-class ML Based System"];
+    Deep_Learning_Models [label="Deep Learning Models"];
+
+    // Fourth layer - 9 Emotions
+    Emotion1 [label="Happy"];
+    Emotion2 [label="Sad"];
+    Emotion3 [label="Anger"];
+    Emotion4 [label="Surprise"];
+    Emotion5 [label="Fear"];
+    Emotion6 [label="Disgust"];
+    Emotion7 [label="Relax"];
+    Emotion8 [label="Amusement"];
+    Emotion9 [label="Excitement"];
+
+    // Define layers
+    { rank=same; EEG_Dreamer_Database; }
+    { rank=same; DWT; EMD; Feature_Extraction; }
+    { rank=same; Multi_Class_ML; Deep_Learning_Models; }
+    { rank=same; Emotion1; Emotion2; Emotion3; Emotion4; Emotion5; Emotion6; Emotion7; Emotion8; Emotion9; }
+
+    // Connect nodes between layers
+    EEG_Dreamer_Database -> { DWT; EMD; Feature_Extraction; Deep_Learning_Models };
+    { DWT; EMD; Feature_Extraction } -> Multi_Class_ML;
+    Multi_Class_ML -> { Emotion1; Emotion2; Emotion3; Emotion4; Emotion5; Emotion6; Emotion7; Emotion8; Emotion9 };
+    Deep_Learning_Models -> { Emotion1; Emotion2; Emotion3; Emotion4; Emotion5; Emotion6; Emotion7; Emotion8; Emotion9 };
+}
