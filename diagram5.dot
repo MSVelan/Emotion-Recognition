@@ -1,0 +1,47 @@
+digraph G {
+    rankdir=LR;
+    node [shape=box, style=filled, color=lightgrey];
+
+    // First layer
+    EEG_Dreamer_Database [label="EEG Dreamer Database"];
+
+    // Second layer
+    DWT [label="DWT"];
+    EMD [label="EMD"];
+    Feature_Extraction_Selection [label="Feature Extraction and Selection"];
+
+    // Sub-blocks for DWT
+    EEG_Band_Separation [label="EEG Band Separation (alpha, beta, gamma, theta)"];
+
+    // Sub-blocks for Feature Extraction and Selection
+    ANOVA [label="ANOVA (31 Statistical Features)"];
+
+    // Third layer
+    Multi_Class_ML [label="Multi-class ML Based System"];
+    Deep_Learning_Models [label="Deep Learning Models"];
+
+    // Fourth layer - 9 Emotions
+    Emotion1 [label="Happy"];
+    Emotion2 [label="Sad"];
+    Emotion3 [label="Angry"];
+    Emotion4 [label="Surprised"];
+    Emotion5 [label="Afraid"];
+    Emotion6 [label="Disgusted"];
+    Emotion7 [label="Neutral"];
+    Emotion8 [label="Bored"];
+    Emotion9 [label="Excited"];
+
+    // Define layers
+    { rank=same; EEG_Dreamer_Database; }
+    { rank=same; DWT; EMD; Feature_Extraction_Selection; EEG_Band_Separation; ANOVA; }
+    { rank=same; Multi_Class_ML; Deep_Learning_Models; }
+    { rank=same; Emotion1; Emotion2; Emotion3; Emotion4; Emotion5; Emotion6; Emotion7; Emotion8; Emotion9; }
+
+    // Connect nodes between layers
+    EEG_Dreamer_Database -> { DWT; EMD; Feature_Extraction_Selection; Deep_Learning_Models };
+    DWT -> EEG_Band_Separation;
+    Feature_Extraction_Selection -> ANOVA;
+    { DWT; EMD; Feature_Extraction_Selection; EEG_Band_Separation; ANOVA } -> Multi_Class_ML;
+    Multi_Class_ML -> { Emotion1; Emotion2; Emotion3; Emotion4; Emotion5; Emotion6; Emotion7; Emotion8; Emotion9 };
+    Deep_Learning_Models -> { Emotion1; Emotion2; Emotion3; Emotion4; Emotion5; Emotion6; Emotion7; Emotion8; Emotion9 };
+}

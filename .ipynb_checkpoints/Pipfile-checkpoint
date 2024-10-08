@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pandas = "*"
+numpy = "*"
+scikit-learn = "*"
+tensorflow = "*"
+matplotlib = "*"
+scipy = "*"
+pywavelets = "*"
+pyemd = "*"
+emd-signal = "*"
+xgboost = "*"
+ipykernel = "*"
+statsmodels = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
